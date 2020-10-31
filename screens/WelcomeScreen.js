@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, Image, TouchableOpacity,TextInput, Alert, Modal,ScrollView,KeyboardAvoidingView } from 'react-native';
 import BarterAnimation from '../components/BarterAnimationScreen.js';
-
+import HomeScreen from './HomeScreen';
 import db from '../config';
 import firebase from 'firebase';
 
@@ -23,7 +23,7 @@ export default class WelcomeScreen extends Component {
   userLogin = (username, password)=>{
     firebase.auth().signInWithEmailAndPassword(username, password)
     .then(()=>{
-      return Alert.alert("Successfully Login")
+        this.props.navigation.navigate('Home');
     })
     .catch((error)=> {
       var errorCode = error.code;
@@ -178,7 +178,7 @@ export default class WelcomeScreen extends Component {
           }
         </View>
         <View style={styles.profileContainer}>
-          <BarterAnimation/>
+          {/* <BarterAnimation/> */}
           <Text style={styles.title}>Barter</Text>
           <Text style={{color:'#ff8a65'}}> A Trading Method </Text>
         </View>
